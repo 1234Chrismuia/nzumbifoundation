@@ -1,309 +1,439 @@
-// Accessibility Features
+/* ============================================
+   NZUMBI FOUNDATION - ACCESSIBILITY JAVASCRIPT
+   ============================================ */
+
 document.addEventListener('DOMContentLoaded', function() {
-    // Accessibility panel toggle
+    
+    /* ============================================
+       1. ACCESSIBILITY PANEL TOGGLE
+       ============================================ */
     const accessibilityToggle = document.getElementById('accessibilityToggle');
     const accessibilityPanel = document.getElementById('accessibilityPanel');
     const closePanel = document.getElementById('closePanel');
     
-    function toggleAccessibilityPanel() {
-        if (accessibilityPanel && accessibilityToggle) {
-            const isShowing = accessibilityPanel.classList.toggle('show');
-            accessibilityToggle.setAttribute('aria-expanded', isShowing);
-            accessibilityToggle.classList.toggle('active', isShowing);
-            
-            // Close panel when clicking outside
-            if (isShowing) {
-                document.addEventListener('click', closePanelOnClickOutside);
-                document.addEventListener('keydown', handleAccessibilityEscapeKey);
-            } else {
-                document.removeEventListener('click', closePanelOnClickOutside);
-                document.removeEventListener('keydown', handleAccessibilityEscapeKey);
-            }
-        }
-    }
-    
-    function closePanelOnClickOutside(e) {
-        if (accessibilityPanel && 
-            !accessibilityPanel.contains(e.target) && 
-            !accessibilityToggle.contains(e.target)) {
-            toggleAccessibilityPanel();
-        }
-    }
-    
-    function handleAccessibilityEscapeKey(e) {
-        if (e.key === 'Escape' && accessibilityPanel.classList.contains('show')) {
-            toggleAccessibilityPanel();
-        }
-    }
-    
     if (accessibilityToggle) {
-        accessibilityToggle.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            toggleAccessibilityPanel();
-        });
-        
-        // Keyboard navigation for accessibility panel
-        accessibilityToggle.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleAccessibilityPanel();
-            }
+        accessibilityToggle.addEventListener('click', function() {
+            accessibilityPanel.classList.toggle('active');
         });
     }
     
     if (closePanel) {
         closePanel.addEventListener('click', function() {
-            toggleAccessibilityPanel();
+            accessibilityPanel.classList.remove('active');
         });
     }
     
-    // Text size controls
+    // Close panel when clicking outside
+    document.addEventListener('click', function(e) {
+        const widget = document.querySelector('.accessibility-widget');
+        if (widget && !widget.contains(e.target)) {
+            accessibilityPanel.classList.remove('active');
+        }
+    });
+    
+    /* ============================================
+       2. TEXT SIZE CONTROLS
+       ============================================ */
     const decreaseText = document.getElementById('decreaseText');
     const resetText = document.getElementById('resetText');
     const increaseText = document.getElementById('increaseText');
-    const htmlElement = document.documentElement;
     
-    let currentTextSize = parseFloat(localStorage.getItem('nzumbiTextSize')) || 1;
-    updateTextSize();
+    let currentSize = 'normal';
+    const sizes = ['small', 'normal', 'large', 'xlarge'];
+    let sizeIndex = 1; // Start at normal
     
-    function updateTextSize() {
-        htmlElement.style.fontSize = currentTextSize * 100 + '%';
-        localStorage.setItem('nzumbiTextSize', currentTextSize.toString());
-        
-        // Update body class for text size
-        document.body.classList.remove('text-small', 'text-large', 'text-xlarge', 'text-xxlarge');
-        if (currentTextSize <= 0.9) {
-            document.body.classList.add('text-small');
-        } else if (currentTextSize >= 1.2 && currentTextSize < 1.4) {
-            document.body.classList.add('text-large');
-        } else if (currentTextSize >= 1.4 && currentTextSize < 1.6) {
-            document.body.classList.add('text-xlarge');
-        } else if (currentTextSize >= 1.6) {
-            document.body.classList.add('text-xxlarge');
-        }
+    // Load saved text size preference
+    const savedSize = localStorage.getItem('textSize');
+    if (savedSize) {
+        document.body.className = document.body.className.replace(/text-size-\w+/g, '');
+        document.body.classList.add('text-size-' + savedSize);
+        sizeIndex = sizes.indexOf(savedSize);
     }
     
     if (decreaseText) {
         decreaseText.addEventListener('click', function() {
-            currentTextSize = Math.max(0.85, currentTextSize - 0.15);
-            updateTextSize();
-            announceToScreenReader('Text size decreased');
+            if (sizeIndex > 0) {
+                sizeIndex--;
+                updateTextSize(sizes[sizeIndex]);
+            }
         });
     }
     
     if (resetText) {
         resetText.addEventListener('click', function() {
-            currentTextSize = 1;
-            updateTextSize();
-            localStorage.removeItem('nzumbiTextSize');
-            announceToScreenReader('Text size reset to normal');
+            sizeIndex = 1; // Reset to normal
+            updateTextSize('normal');
         });
     }
     
     if (increaseText) {
         increaseText.addEventListener('click', function() {
-            currentTextSize = Math.min(1.6, currentTextSize + 0.15);
-            updateTextSize();
-            announceToScreenReader('Text size increased');
+            if (sizeIndex < sizes.length - 1) {
+                sizeIndex++;
+                updateTextSize(sizes[sizeIndex]);
+            }
         });
     }
     
-    // High contrast mode
+    function updateTextSize(size) {
+        // Remove all text size classes
+        document.body.className = document.body.className.replace(/text-size-\w+/g, '');
+        // Add new size class
+        document.body.classList.add('text-size-' + size);
+        // Save preference
+        localStorage.setItem('textSize', size);
+    }
+    
+    /* ============================================
+       3. HIGH CONTRAST MODE
+       ============================================ */
     const toggleContrast = document.getElementById('toggleContrast');
     
-    function toggleHighContrast() {
-        if (toggleContrast) {
-            const isActive = document.body.classList.toggle('high-contrast');
-            toggleContrast.classList.toggle('active', isActive);
-            toggleContrast.setAttribute('aria-pressed', isActive);
-            localStorage.setItem('nzumbiHighContrast', isActive.toString());
-            
-            announceToScreenReader(isActive ? 'High contrast mode enabled' : 'High contrast mode disabled');
-        }
+    // Load saved contrast preference
+    const savedContrast = localStorage.getItem('highContrast');
+    if (savedContrast === 'true') {
+        document.body.classList.add('high-contrast');
+        toggleContrast.classList.add('active');
     }
     
     if (toggleContrast) {
-        toggleContrast.addEventListener('click', toggleHighContrast);
-        
-        // Load saved contrast preference
-        const savedContrast = localStorage.getItem('nzumbiHighContrast');
-        if (savedContrast === 'true') {
-            document.body.classList.add('high-contrast');
-            toggleContrast.classList.add('active');
-            toggleContrast.setAttribute('aria-pressed', 'true');
-        }
-        
-        // Keyboard support
-        toggleContrast.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleHighContrast();
+        toggleContrast.addEventListener('click', function() {
+            this.classList.toggle('active');
+            document.body.classList.toggle('high-contrast');
+            
+            // Save preference
+            const isActive = document.body.classList.contains('high-contrast');
+            localStorage.setItem('highContrast', isActive);
+        });
+    }
+    
+    /* ============================================
+       4. SPEECH/READ ALOUD MODE
+       ============================================ */
+    const toggleSpeech = document.getElementById('toggleSpeech');
+    let speechEnabled = false;
+    let currentUtterance = null;
+    
+    // Check if browser supports speech synthesis
+    const speechSupported = 'speechSynthesis' in window;
+    
+    if (!speechSupported && toggleSpeech) {
+        toggleSpeech.disabled = true;
+        toggleSpeech.title = 'Speech synthesis not supported in this browser';
+    }
+    
+    if (toggleSpeech && speechSupported) {
+        toggleSpeech.addEventListener('click', function() {
+            this.classList.toggle('active');
+            speechEnabled = !speechEnabled;
+            
+            if (speechEnabled) {
+                document.body.classList.add('speech-mode');
+                enableSpeechMode();
+            } else {
+                document.body.classList.remove('speech-mode');
+                disableSpeechMode();
+                // Stop any ongoing speech
+                window.speechSynthesis.cancel();
             }
         });
     }
     
-    // Screen reader announcements
-    function announceToScreenReader(message) {
-        const announcer = document.getElementById('screen-reader-announcer');
-        if (!announcer) {
-            const announcerElement = document.createElement('div');
-            announcerElement.id = 'screen-reader-announcer';
-            announcerElement.className = 'sr-only';
-            announcerElement.setAttribute('aria-live', 'polite');
-            announcerElement.setAttribute('aria-atomic', 'true');
-            document.body.appendChild(announcerElement);
-        }
+    function enableSpeechMode() {
+        // Add click listeners to all text elements
+        const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, button, label');
         
-        document.getElementById('screen-reader-announcer').textContent = message;
-        
-        // Clear after 2 seconds
-        setTimeout(() => {
-            if (document.getElementById('screen-reader-announcer')) {
-                document.getElementById('screen-reader-announcer').textContent = '';
-            }
-        }, 2000);
+        textElements.forEach(element => {
+            element.addEventListener('click', speakText);
+            element.style.cursor = 'pointer';
+            element.title = 'Click to read aloud';
+        });
     }
     
-    // Expose announce function globally for other scripts
-    window.announceToScreenReader = announceToScreenReader;
-    
-    // Focus trap for accessibility panel
-    if (accessibilityPanel) {
-        const focusableElements = accessibilityPanel.querySelectorAll(
-            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        );
+    function disableSpeechMode() {
+        const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, a, button, label');
         
-        if (focusableElements.length > 0) {
-            const firstFocusableElement = focusableElements[0];
-            const lastFocusableElement = focusableElements[focusableElements.length - 1];
+        textElements.forEach(element => {
+            element.removeEventListener('click', speakText);
+            element.style.cursor = '';
+            element.title = '';
+        });
+    }
+    
+    function speakText(e) {
+        if (!speechEnabled) return;
+        
+        // Don't speak if clicking on interactive elements in normal mode
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') {
+            e.preventDefault();
+        }
+        
+        // Stop any ongoing speech
+        window.speechSynthesis.cancel();
+        
+        // Get text content
+        const text = e.target.textContent.trim();
+        
+        if (text) {
+            // Create utterance
+            currentUtterance = new SpeechSynthesisUtterance(text);
             
-            accessibilityPanel.addEventListener('keydown', function(e) {
-                if (e.key === 'Tab') {
-                    if (e.shiftKey) {
-                        if (document.activeElement === firstFocusableElement) {
-                            e.preventDefault();
-                            lastFocusableElement.focus();
-                        }
-                    } else {
-                        if (document.activeElement === lastFocusableElement) {
-                            e.preventDefault();
-                            firstFocusableElement.focus();
-                        }
-                    }
+            // Set voice properties
+            currentUtterance.rate = 0.9; // Slightly slower
+            currentUtterance.pitch = 1;
+            currentUtterance.volume = 1;
+            
+            // Highlight element while speaking
+            e.target.classList.add('speaking');
+            
+            currentUtterance.onend = function() {
+                e.target.classList.remove('speaking');
+            };
+            
+            // Speak
+            window.speechSynthesis.speak(currentUtterance);
+        }
+    }
+    
+    /* ============================================
+       5. KEYBOARD NAVIGATION ENHANCEMENT
+       ============================================ */
+    
+    // Add visible focus indicators
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Tab') {
+            document.body.classList.add('keyboard-nav');
+        }
+    });
+    
+    document.addEventListener('mousedown', function() {
+        document.body.classList.remove('keyboard-nav');
+    });
+    
+    /* ============================================
+       6. SKIP LINKS
+       ============================================ */
+    const skipLinks = document.querySelectorAll('.skip-to-content');
+    
+    skipLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId);
+            
+            if (target) {
+                target.setAttribute('tabindex', '-1');
+                target.focus();
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+    
+    /* ============================================
+       7. ARIA LIVE REGIONS FOR DYNAMIC CONTENT
+       ============================================ */
+    
+    // Create a live region for announcements
+    const liveRegion = document.createElement('div');
+    liveRegion.setAttribute('aria-live', 'polite');
+    liveRegion.setAttribute('aria-atomic', 'true');
+    liveRegion.className = 'sr-only';
+    document.body.appendChild(liveRegion);
+    
+    // Function to announce messages to screen readers
+    window.announceToScreenReader = function(message) {
+        liveRegion.textContent = message;
+        setTimeout(() => {
+            liveRegion.textContent = '';
+        }, 1000);
+    };
+    
+    /* ============================================
+       8. FORM ACCESSIBILITY ENHANCEMENTS
+       ============================================ */
+    const forms = document.querySelectorAll('form');
+    
+    forms.forEach(form => {
+        const inputs = form.querySelectorAll('input, select, textarea');
+        
+        inputs.forEach(input => {
+            // Add aria-required to required fields
+            if (input.hasAttribute('required')) {
+                input.setAttribute('aria-required', 'true');
+            }
+            
+            // Add aria-invalid for validation
+            input.addEventListener('invalid', function() {
+                this.setAttribute('aria-invalid', 'true');
+            });
+            
+            input.addEventListener('input', function() {
+                if (this.validity.valid) {
+                    this.setAttribute('aria-invalid', 'false');
                 }
             });
-        }
-    }
-    
-    // Keyboard shortcuts
-    document.addEventListener('keydown', function(e) {
-        // Alt + A to toggle accessibility panel
-        if (e.altKey && e.key === 'a') {
-            e.preventDefault();
-            if (accessibilityToggle) {
-                accessibilityToggle.click();
-            }
-        }
+        });
         
-        // Alt + C to toggle contrast
-        if (e.altKey && e.key === 'c') {
-            e.preventDefault();
-            if (toggleContrast) {
-                toggleContrast.click();
-            }
-        }
-        
-        // Alt + T to increase text size
-        if (e.altKey && e.key === 't') {
-            e.preventDefault();
-            if (increaseText) {
-                increaseText.click();
-            }
-        }
-        
-        // Alt + Shift + T to decrease text size
-        if (e.altKey && e.shiftKey && e.key === 'T') {
-            e.preventDefault();
-            if (decreaseText) {
-                decreaseText.click();
-            }
-        }
-        
-        // Alt + R to reset text size
-        if (e.altKey && e.key === 'r') {
-            e.preventDefault();
-            if (resetText) {
-                resetText.click();
-            }
-        }
-    });
-    
-    // Add skip to content link
-    const skipLink = document.createElement('a');
-    skipLink.href = '#main-content';
-    skipLink.className = 'skip-to-content';
-    skipLink.textContent = 'Skip to main content';
-    document.body.insertBefore(skipLink, document.body.firstChild);
-    
-    // Focus management for modals
-    document.querySelectorAll('.modal').forEach(modal => {
-        modal.addEventListener('shown', function() {
-            const focusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-            if (focusable) focusable.focus();
+        // Announce form submission status
+        form.addEventListener('submit', function() {
+            window.announceToScreenReader('Form is being submitted');
         });
     });
     
-    // Add focus-visible polyfill if needed
-    if (!CSS.supports('selector(:focus-visible)')) {
-        document.body.classList.add('js-focus-visible');
+    /* ============================================
+       9. MODAL ACCESSIBILITY
+       ============================================ */
+    const modals = document.querySelectorAll('.modal');
+    
+    modals.forEach(modal => {
+        // Set ARIA attributes
+        modal.setAttribute('role', 'dialog');
+        modal.setAttribute('aria-modal', 'true');
         
-        document.addEventListener('mousedown', function() {
-            document.body.classList.remove('focus-visible');
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Tab') {
-                document.body.classList.add('focus-visible');
+        // Trap focus within modal when open
+        modal.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && this.classList.contains('active')) {
+                this.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Trap Tab key
+            if (e.key === 'Tab' && this.classList.contains('active')) {
+                trapFocus(e, this);
             }
         });
+    });
+    
+    function trapFocus(e, container) {
+        const focusableElements = container.querySelectorAll(
+            'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
         
-        // Add focus-visible class to focused elements
-        document.addEventListener('focusin', function(e) {
-            if (document.body.classList.contains('focus-visible')) {
-                e.target.classList.add('focus-visible');
+        if (e.shiftKey) {
+            if (document.activeElement === firstElement) {
+                lastElement.focus();
+                e.preventDefault();
             }
-        });
-        
-        document.addEventListener('focusout', function(e) {
-            e.target.classList.remove('focus-visible');
-        });
-    }
-    
-    // Touch device detection
-    function isTouchDevice() {
-        return (('ontouchstart' in window) ||
-               (navigator.maxTouchPoints > 0) ||
-               (navigator.msMaxTouchPoints > 0));
-    }
-    
-    if (isTouchDevice()) {
-        document.body.classList.add('touch-device');
-    }
-    
-    // Prevent zoom on double-tap for iOS
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(event) {
-        const now = (new Date()).getTime();
-        if (now - lastTouchEnd <= 300) {
-            event.preventDefault();
+        } else {
+            if (document.activeElement === lastElement) {
+                firstElement.focus();
+                e.preventDefault();
+            }
         }
-        lastTouchEnd = now;
-    }, false);
+    }
     
-    // Initialize tooltips for accessibility
+    /* ============================================
+       10. IMAGE ALT TEXT CHECKER (Development Only)
+       ============================================ */
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+            if (!img.hasAttribute('alt')) {
+                console.warn('Image missing alt text:', img);
+                img.style.border = '2px solid red';
+            }
+        });
+    }
+    
+    /* ============================================
+       11. HEADING HIERARCHY CHECKER (Development Only)
+       ============================================ */
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+        let lastLevel = 0;
+        
+        headings.forEach(heading => {
+            const level = parseInt(heading.tagName.substring(1));
+            
+            if (level - lastLevel > 1) {
+                console.warn('Heading hierarchy skipped:', heading, 'Previous level:', lastLevel, 'Current level:', level);
+            }
+            
+            lastLevel = level;
+        });
+    }
+    
+    /* ============================================
+       12. PREFERS-REDUCED-MOTION DETECTION
+       ============================================ */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    if (prefersReducedMotion.matches) {
+        console.log('User prefers reduced motion');
+        // Add class to body
+        document.body.classList.add('reduced-motion');
+    }
+    
+    prefersReducedMotion.addEventListener('change', function() {
+        if (this.matches) {
+            document.body.classList.add('reduced-motion');
+        } else {
+            document.body.classList.remove('reduced-motion');
+        }
+    });
+    
+    /* ============================================
+       13. COLOR SCHEME DETECTION
+       ============================================ */
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
+    
+    if (prefersDarkMode.matches) {
+        console.log('User prefers dark mode');
+        // You can add dark mode styles if desired
+    }
+    
+    /* ============================================
+       14. TOOLTIP ACCESSIBILITY
+       ============================================ */
     const tooltips = document.querySelectorAll('[title]');
+    
     tooltips.forEach(element => {
-        element.setAttribute('aria-label', element.getAttribute('title'));
+        const title = element.getAttribute('title');
+        element.setAttribute('aria-label', title);
     });
+    
+    /* ============================================
+       15. ANNOUNCE PAGE LOAD
+       ============================================ */
+    window.addEventListener('load', function() {
+        setTimeout(() => {
+            window.announceToScreenReader('Page loaded. Nzumbi Foundation website. Use Tab to navigate.');
+        }, 1000);
+    });
+    
 });
+
+/* ============================================
+   16. UTILITY FUNCTIONS
+   ============================================ */
+
+// Function to check if element is visible
+function isElementVisible(element) {
+    return element.offsetWidth > 0 && element.offsetHeight > 0;
+}
+
+// Function to get focusable elements
+function getFocusableElements(container) {
+    return container.querySelectorAll(
+        'a[href], button:not([disabled]), textarea:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+}
+
+// Function to check color contrast (for development)
+function checkContrast(foreground, background) {
+    // This is a simplified version
+    // For production, use a proper color contrast library
+    const getLuminance = (color) => {
+        // Simplified luminance calculation
+        return (0.299 * color.r + 0.587 * color.g + 0.114 * color.b) / 255;
+    };
+    
+    const fgLum = getLuminance(foreground);
+    const bgLum = getLuminance(background);
+    
+    const contrast = (Math.max(fgLum, bgLum) + 0.05) / (Math.min(fgLum, bgLum) + 0.05);
+    
+    return contrast;
+}
