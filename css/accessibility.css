@@ -194,7 +194,7 @@
 }
 
 .contrast-toggle.active .contrast-off,
-.speech-toggle.active .speech-off {
+.speech-toggle.active .contrast-off {
     opacity: 0;
 }
 
@@ -406,22 +406,39 @@ body.speech-mode .speaking {
     }
     
     .accessibility-panel {
-        /* === FIX 2: Fixed Positioning for Viewport === */
+        /* FIX 2: Fixed Positioning for Viewport */
         position: fixed; 
-        bottom: 150px; /* Position it high enough above the button */
+        bottom: 150px; 
         top: auto; 
         left: 50%;
         width: calc(100vw - 40px);
-        transform: translateX(-50%); /* Only horizontal centering */
-        /* Removed original translateY(20px) */
+        transform: translateX(-50%); 
     }
     
     .accessibility-panel.active {
         opacity: 1;
         visibility: visible;
-        transform: translateX(-50%); /* Only horizontal centering on activation */
-        /* Removed original translateY(0) */
+        transform: translateX(-50%); 
     }
+    
+    /* === FIX 3: Align text inside small toggles === */
+    .contrast-off,
+    .contrast-on,
+    .speech-off,
+    .speech-on {
+        font-size: 0.65rem; /* Smaller font for reduced space */
+    }
+
+    .contrast-off,
+    .speech-off {
+        left: 3px; /* Reduced left padding */
+    }
+
+    .contrast-on,
+    .speech-on {
+        right: 3px; /* Reduced right padding */
+    }
+    /* =========================================== */
 }
 
 /* ============================================
