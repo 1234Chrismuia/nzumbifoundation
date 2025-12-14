@@ -10,8 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="theme-color" content="#8806CE">
+<meta name="msapplication-TileColor" content="#8806CE">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 </head>
 <body>
+    <div class="loading-screen" id="loadingScreen">
+    <div style="text-align: center; color: white;">
+        <div class="loading-spinner" style="width: 60px; height: 60px; margin: 0 auto 20px;"></div>
+        <h3>Nzumbi Foundation</h3>
+        <p>Loading...</p>
+    </div>
+</div>
     <!-- Skip to main content -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
@@ -822,52 +833,53 @@
     </footer>
 
     <!-- Support Modal -->
-    <div class="modal" id="supportModal">
-        <div class="modal-backdrop"></div>
-        <div class="modal-container">
-            <div class="modal-content">
-                <button class="close-modal" id="closeModal">&times;</button>
-                <h3><i class="fas fa-heart"></i> Support Our Ongoing Work</h3>
+    <!-- Support Modal -->
+<div class="modal" id="supportModal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-container">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal">&times;</button>
+            <h3><i class="fas fa-heart"></i> Support Our Ongoing Work</h3>
+            
+            <div class="modal-message">
+                <p>Thank you for your interest in supporting Nzumbi Foundation! Your contribution will help us continue our vital community work in Makueni County.</p>
                 
-                <div class="modal-message">
-                    <p>Thank you for your interest in supporting Nzumbi Foundation! Your contribution will help us continue our vital community work in Makueni County.</p>
-                    
-                    <div class="support-methods">
-                        <div class="method">
-                            <h4><i class="fas fa-mobile-alt"></i> M-PESA</h4>
-                            <p>Paybill: 247247</p>
-                            <p>Account: NZUMBI</p>
-                            <button class="btn btn-secondary copy-btn" data-text="Paybill: 247247, Account: NZUMBI">
-                                <i class="fas fa-copy"></i> Copy Details
-                            </button>
-                        </div>
-                        <div class="method">
-                            <h4><i class="fas fa-university"></i> Bank Transfer</h4>
-                            <p>Contact us for bank account details</p>
-                            <button class="btn btn-secondary" id="requestBankBtn">
-                                <i class="fas fa-envelope"></i> Request Details
-                            </button>
-                        </div>
-                        <div class="method">
-                            <h4><i class="fas fa-handshake"></i> In-Kind Support</h4>
-                            <p>Educational materials, equipment, etc.</p>
-                            <button class="btn btn-secondary" id="inKindBtn">
-                                <i class="fas fa-box"></i> Discuss Options
-                            </button>
-                        </div>
+                <div class="support-methods">
+                    <div class="method">
+                        <h4><i class="fas fa-mobile-alt"></i> M-PESA</h4>
+                        <p>Paybill: 247247</p>
+                        <p>Account: NZUMBI</p>
+                        <button class="btn btn-secondary copy-btn" data-text="Paybill: 247247, Account: NZUMBI">
+                            <i class="fas fa-copy"></i> Copy Details
+                        </button>
                     </div>
-                    
-                    <div class="modal-note">
-                        <p><i class="fas fa-info-circle"></i> All contributions receive official receipts and will be acknowledged in our impact reports.</p>
+                    <div class="method">
+                        <h4><i class="fas fa-university"></i> Bank Transfer</h4>
+                        <p>Contact us for bank account details</p>
+                        <button class="btn btn-secondary request-contact-btn" data-subject="Bank Transfer Details Request">
+                            <i class="fas fa-envelope"></i> Request Details
+                        </button>
+                    </div>
+                    <div class="method">
+                        <h4><i class="fas fa-handshake"></i> In-Kind Support</h4>
+                        <p>Educational materials, equipment, etc.</p>
+                        <button class="btn btn-secondary request-contact-btn" data-subject="In-Kind Support Discussion">
+                            <i class="fas fa-box"></i> Discuss Options
+                        </button>
                     </div>
                 </div>
                 
-                <div class="modal-actions">
-                    <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                <div class="modal-note">
+                    <p><i class="fas fa-info-circle"></i> All contributions receive official receipts and will be acknowledged in our impact reports.</p>
                 </div>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="btn btn-secondary" id="closeModalBtn">Close</button>
             </div>
         </div>
     </div>
+</div>
 
     <!-- Partnership Modal -->
     <div class="modal" id="partnershipModal">
@@ -921,5 +933,30 @@
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/accessibility.js"></script>
+    <script>
+// Loading screen
+window.addEventListener('load', function() {
+    setTimeout(function() {
+        document.getElementById('loadingScreen').classList.add('fade-out');
+        setTimeout(function() {
+            document.getElementById('loadingScreen').style.display = 'none';
+        }, 500);
+    }, 1000);
+});
+
+// Lazy load images
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', function() {
+                this.classList.add('loaded');
+            });
+        }
+    });
+});
+</script>
 </body>
 </html>
