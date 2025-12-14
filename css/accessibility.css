@@ -1,7 +1,19 @@
-/* Accessibility Styles */
+/* High Contrast Mode */
 .high-contrast {
-    background: #000 !important;
-    color: #fff !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
+}
+
+.high-contrast * {
+    background-color: #000000 !important;
+    color: #FFFFFF !important;
+    border-color: #FFFFFF !important;
+}
+
+.high-contrast .hero {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border-bottom: 3px solid #FFFF00 !important;
 }
 
 .high-contrast .section-title,
@@ -9,49 +21,104 @@
 .high-contrast h2,
 .high-contrast h3,
 .high-contrast h4 {
-    color: #fff !important;
-    text-shadow: 0 0 3px #fff;
+    color: #FFFF00 !important;
+    text-shadow: 0 0 2px #000000 !important;
 }
 
 .high-contrast .nav-link,
 .high-contrast a {
-    color: #00ffff !important;
+    color: #00FFFF !important;
+    text-decoration: underline !important;
+}
+
+.high-contrast .nav-link:hover,
+.high-contrast a:hover {
+    color: #FF00FF !important;
 }
 
 .high-contrast .btn {
-    border: 2px solid #fff !important;
+    border: 3px solid #FFFFFF !important;
+    color: #000000 !important;
+    background: #FFFF00 !important;
 }
 
 .high-contrast .btn-primary {
-    background: #ff0 !important;
-    color: #000 !important;
+    background: #FFFF00 !important;
+    color: #000000 !important;
+    border-color: #FFFFFF !important;
 }
 
 .high-contrast .btn-secondary {
-    background: #000 !important;
-    color: #ff0 !important;
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border-color: #FFFF00 !important;
+}
+
+.high-contrast .btn:hover {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    border-color: #FFFF00 !important;
 }
 
 .high-contrast .form-group input,
 .high-contrast .form-group select,
 .high-contrast .form-group textarea {
-    background: #000 !important;
-    color: #fff !important;
-    border: 2px solid #fff !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFFFF !important;
 }
 
+.high-contrast .form-group input:focus,
+.high-contrast .form-group select:focus,
+.high-contrast .form-group textarea:focus {
+    border-color: #FFFF00 !important;
+    box-shadow: 0 0 0 3px #FFFF00 !important;
+}
+
+.high-contrast .contact-form,
+.high-contrast .contact-info-sidebar,
+.high-contrast .program-card,
+.high-contrast .feature-card,
 .high-contrast .modal-content {
-    background: #000 !important;
-    color: #fff !important;
-    border: 3px solid #ff0 !important;
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border: 3px solid #FFFF00 !important;
 }
 
-.high-contrast .contact-method {
-    border-bottom: 2px solid #fff !important;
+.high-contrast .contact-method,
+.high-contrast .footer-column,
+.high-contrast .accessibility-option {
+    border-color: #FFFFFF !important;
 }
 
-.high-contrast .feature-card {
-    border: 2px solid #fff !important;
+.high-contrast .logo-icon,
+.high-contrast .method-icon,
+.high-contrast .feature-icon {
+    color: #FFFF00 !important;
+}
+
+.high-contrast .section-label {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+.high-contrast .program-header {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border-bottom: 3px solid #FFFF00 !important;
+}
+
+.high-contrast .status-active {
+    background: #000000 !important;
+    color: #FFFF00 !important;
+    border: 2px solid #FFFF00 !important;
+}
+
+.high-contrast footer {
+    background: #000000 !important;
+    color: #FFFFFF !important;
+    border-top: 3px solid #FFFF00 !important;
 }
 
 /* Text Size Adjustments */
@@ -73,65 +140,39 @@
 
 /* Speech Mode */
 .speech-mode .highlight-reading {
-    background-color: #ffff00 !important;
-    color: #000 !important;
-    padding: 2px 4px;
-    border-radius: 3px;
+    background-color: #FFFF00 !important;
+    color: #000000 !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    outline: 2px solid #000000 !important;
 }
 
-/* Focus Styles */
+/* Focus Styles for Accessibility */
 *:focus {
-    outline: 3px solid #4D90FE !important;
+    outline: 3px solid #8806CE !important;
+    outline-offset: 2px !important;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none !important;
+}
+
+*:focus-visible {
+    outline: 3px solid #8806CE !important;
     outline-offset: 2px !important;
 }
 
 /* Screen Reader Only */
 .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border: 0;
-}
-
-/* Accessibility Toggle States */
-.contrast-toggle.active,
-.speech-toggle.active {
-    background: var(--success-color);
-}
-
-.contrast-toggle.active .contrast-on,
-.speech-toggle.active .speech-on {
-    display: block;
-}
-
-.contrast-toggle .contrast-on,
-.speech-toggle .speech-on,
-.contrast-toggle.active .contrast-off,
-.speech-toggle.active .speech-off {
-    display: none;
-}
-
-/* Enhanced Form Accessibility */
-.form-group input:invalid,
-.form-group select:invalid,
-.form-group textarea:invalid {
-    border-color: var(--error-color);
-}
-
-.form-group input:valid,
-.form-group select:valid,
-.form-group textarea:valid {
-    border-color: var(--success-color);
-}
-
-.required-indicator::after {
-    content: " *";
-    color: var(--error-color);
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 /* Skip Navigation */
@@ -139,16 +180,66 @@
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--secondary-color);
+    background: #8806CE;
     color: white;
-    padding: 8px 16px;
+    padding: 12px 20px;
     text-decoration: none;
     z-index: 1001;
-    border-radius: 0 0 4px 0;
+    border-radius: 0 0 8px 0;
+    font-weight: 600;
+    transition: top 0.3s ease;
 }
 
 .skip-nav:focus {
     top: 0;
+    outline: 3px solid #8806CE;
+    outline-offset: 2px;
+}
+
+/* Accessibility Toggle States */
+.contrast-toggle.active {
+    background: #FFFF00 !important;
+}
+
+.contrast-toggle.active .contrast-on {
+    display: block;
+    color: #000000;
+}
+
+.contrast-toggle .contrast-on,
+.contrast-toggle.active .contrast-off {
+    display: none;
+}
+
+.contrast-toggle.active .contrast-on {
+    display: block;
+}
+
+/* Enhanced Form Accessibility */
+.form-group input:invalid,
+.form-group select:invalid,
+.form-group textarea:invalid {
+    border-color: #E74C3C !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23E74C3C' viewBox='0 0 12 12'%3E%3Cpath d='M6 0C2.686 0 0 2.686 0 6s2.686 6 6 6 6-2.686 6-6-2.686-6-6-6zm1 9H5V8h2v1zm0-2H5V3h2v4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+.form-group input:valid,
+.form-group select:valid,
+.form-group textarea:valid {
+    border-color: #27AE60 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2327AE60' viewBox='0 0 12 12'%3E%3Cpath d='M10.28 2.28L4 8.56l-2.28-2.28-1.06 1.06L4 10.68l7.34-7.34-1.06-1.06z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 40px;
+}
+
+.required-indicator::after {
+    content: " *";
+    color: #E74C3C;
+    font-weight: bold;
 }
 
 /* Reduced Motion */
@@ -161,18 +252,109 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+    
+    .feature-card:hover,
+    .program-card:hover,
+    .btn:hover,
+    .nav-link:hover,
+    .logo:hover {
+        transform: none !important;
+    }
 }
 
 /* High Contrast Media Query */
 @media (prefers-contrast: high) {
     body:not(.high-contrast) {
-        background: #000 !important;
-        color: #fff !important;
+        --primary-color: #0000FF;
+        --secondary-color: #FF0000;
+        --text-color: #000000;
+        --border-color: #000000;
     }
     
-    body:not(.high-contrast) * {
-        background-color: #000 !important;
-        color: #fff !important;
-        border-color: #fff !important;
+    body:not(.high-contrast) .btn {
+        border-width: 3px !important;
     }
+    
+    body:not(.high-contrast) .nav-link {
+        text-decoration: underline !important;
+    }
+}
+
+/* Large Text Mode */
+@media (prefers-reduced-data: no-preference) {
+    .large-text-mode {
+        font-size: 120% !important;
+    }
+    
+    .large-text-mode .container {
+        max-width: 1400px !important;
+    }
+    
+    .large-text-mode .btn {
+        padding: 20px 40px !important;
+        font-size: 18px !important;
+    }
+}
+
+/* Touch Target Sizes for Mobile */
+@media (max-width: 768px) {
+    .nav-link,
+    .btn,
+    .form-group input,
+    .form-group select,
+    .form-group textarea,
+    .social-icons a {
+        min-height: 44px !important;
+        min-width: 44px !important;
+    }
+    
+    .accessibility-btn,
+    .whatsapp-float {
+        min-height: 60px !important;
+        min-width: 60px !important;
+    }
+    
+    .text-size-controls button {
+        min-height: 36px !important;
+        min-width: 44px !important;
+    }
+}
+
+/* Print Accessibility */
+@media print {
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+    
+    .sr-only {
+        display: block !important;
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        margin: 0 !important;
+        clip: auto !important;
+    }
+}
+
+/* Dark Mode Accessibility */
+@media (prefers-color-scheme: dark) {
+    body:not(.high-contrast) {
+        color-scheme: dark;
+    }
+    
+    body:not(.high-contrast) .form-group input,
+    body:not(.high-contrast) .form-group select,
+    body:not(.high-contrast) .form-group textarea {
+        color-scheme: dark;
+    }
+}
+
+/* Focus Visible Polyfill */
+.js-focus-visible :focus:not(.focus-visible) {
+    outline: none;
+}
+
+.js-focus-visible .focus-visible {
+    outline: 3px solid #8806CE;
+    outline-offset: 2px;
 }
