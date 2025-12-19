@@ -14,15 +14,26 @@
 <meta name="msapplication-TileColor" content="#8806CE">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="theme-color" content="#8806CE">
+    <meta name="msapplication-TileColor" content="#8806CE">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 </head>
 <body>
     <div class="loading-screen" id="loadingScreen">
-    <div style="text-align: center; color: white;">
-        <div class="loading-spinner" style="width: 60px; height: 60px; margin: 0 auto 20px;"></div>
-        <h3>Nzumbi Foundation</h3>
-        <p>Loading...</p>
+        <div class="modern-loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-text">
+                <h3>Nzumbi Foundation</h3>
+                <p>Loading<span class="dots">...</span></p>
+            </div>
+        </div>
     </div>
-</div>
     <!-- Skip to main content -->
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
@@ -99,7 +110,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" data-aos="fade-up">
         <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content" id="main-content">
@@ -144,7 +155,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="section about" id="about">
+    <section class="section about" id="about" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">OUR FOUNDATION</span>
@@ -205,7 +216,7 @@
     </section>
 
     <!-- Strategy Section -->
-    <section class="section strategy" id="strategy">
+    <section class="section strategy" id="strategy" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">OUR STRATEGY</span>
@@ -261,7 +272,7 @@
     </section>
 
     <!-- Programs Section -->
-    <section class="section programs" id="programs">
+    <section class="section programs" id="programs" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">OUR ACTIVE WORK</span>
@@ -418,7 +429,7 @@
     </section>
 
     <!-- Implementation Section (Updated without timeline) -->
-    <section class="section implementation" id="partners">
+    <section class="section implementation" id="partners" data-aos="fade-up">
         <div class="container">
             <div class="section-header">
                 <span class="section-label">HOW WE WORK</span>
@@ -525,7 +536,7 @@
     </section>
 
     <!-- Support Section with Contact Form -->
-<section class="section donate" id="donate">
+<section class="section donate" id="donate" data-aos="fade-up">
     <div class="container">
         <div class="section-header">
             <span class="section-label">GET INVOLVED</span>
@@ -718,7 +729,7 @@
           
 
     <!-- Footer -->
-    <footer id="contact">
+   <footer id="contact" data-aos="fade-up">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
@@ -928,30 +939,32 @@
     <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/accessibility.js"></script>
+     <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-// Loading screen
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        document.getElementById('loadingScreen').classList.add('fade-out');
-        setTimeout(function() {
-            document.getElementById('loadingScreen').style.display = 'none';
-        }, 500);
-    }, 1000);
-});
-
-// Lazy load images
-document.addEventListener('DOMContentLoaded', function() {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-        if (img.complete) {
-            img.classList.add('loaded');
-        } else {
-            img.addEventListener('load', function() {
-                this.classList.add('loaded');
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100
+        });
+    </script>
+    <script>
+        const loadingScreen = document.getElementById('loadingScreen');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.classList.add('fade-out');
+            }, 800);
+        });
+        document.querySelectorAll('a[href]:not([href^="http"]):not([href^="mailto"]):not([href^="#"]):not([target])').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                loadingScreen.classList.remove('fade-out');
+                setTimeout(() => {
+                    window.location = link.href;
+                }, 300);
             });
-        }
-    });
-});
-</script>
+        });
+    </script>
 </body>
 </html>
