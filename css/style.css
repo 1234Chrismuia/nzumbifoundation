@@ -264,37 +264,30 @@ ul {
     padding: var(--spacing-sm) 0;
 }
 
-/* Logo */
+/* Logo container */
 .logo {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: 0.75rem;
+    text-decoration: none;
     font-family: 'Montserrat', sans-serif;
 }
 
-.logo-icon {
-    width: 50px;
+/* Image logo */
+.logo-image {
     height: 50px;
-    background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--white);
-    font-size: 1.5rem;
-}
-.logo img.logo-image {
-    height: 50px; /* adjust size to fit your header */
-    width: auto;  /* keeps aspect ratio */
+    width: auto;
+    object-fit: contain;
     display: block;
 }
 
-
+/* Text block (optional) */
 .logo-text {
     display: flex;
     flex-direction: column;
 }
 
+/* Main text */
 .logo-main {
     font-size: 1.4rem;
     font-weight: 800;
@@ -302,6 +295,7 @@ ul {
     line-height: 1;
 }
 
+/* Sub text */
 .logo-sub {
     font-size: 0.7rem;
     font-weight: 600;
