@@ -283,6 +283,12 @@ ul {
     color: var(--white);
     font-size: 1.5rem;
 }
+.logo img.logo-image {
+    height: 50px; /* adjust size to fit your header */
+    width: auto;  /* keeps aspect ratio */
+    display: block;
+}
+
 
 .logo-text {
     display: flex;
