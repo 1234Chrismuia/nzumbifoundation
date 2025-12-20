@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,13 +11,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- AOS Animation Library -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <meta name="theme-color" content="#8806CE">
     <meta name="msapplication-TileColor" content="#8806CE">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
 
-    </head>
 <body>
     <div class="loading-screen" id="loadingScreen">
         <div class="modern-loader">
@@ -33,13 +33,11 @@
 
     <a href="#main-content" class="skip-to-content">Skip to main content</a>
 
-    <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/254726059231" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp" aria-hidden="true"></i>
         <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
     </a>
 
-    <!-- Accessibility Widget -->
     <div class="accessibility-widget left-widget">
         <button class="accessibility-btn" id="accessibilityToggle" aria-label="Accessibility Options">
             <i class="fas fa-universal-access" aria-hidden="true"></i>
@@ -74,19 +72,17 @@
         </div>
     </div>
 
-    <!-- Header -->
     <header id="header">
         <div class="container">
             <div class="header-content">
-               <a href="#home" class="logo">
-    <img src="https://i.imgur.com/Vxrfv3V.png" alt="NZUMBI FOUNDATION Logo" class="logo-image">
-                   <div class="logo-text">
-        <span class="logo-main">NZUMBI</span>
-        <span class="logo-sub">FOUNDATION</span>
-    </div>
-</a>
+                <a href="#home" class="logo">
+                    <img src="https://i.imgur.com/Vxrfv3V.png" alt="NZUMBI FOUNDATION Logo" class="logo-image">
+                    <div class="logo-text">
+                        <span class="logo-main">NZUMBI</span>
+                        <span class="logo-sub">FOUNDATION</span>
+                    </div>
+                </a>
 
-                
                 <nav class="main-nav" id="mainNav">
                     <ul class="nav-links">
                         <li><a href="#home" class="nav-link">Home</a></li>
@@ -94,10 +90,11 @@
                         <li><a href="#strategy" class="nav-link">Strategy</a></li>
                         <li><a href="#programs" class="nav-link">Programs</a></li>
                         <li><a href="#partners" class="nav-link">Partners</a></li>
+                        <li><a href="#blog" class="nav-link">Blog & News</a></li>
                         <li><a href="#donate" class="nav-link donate-btn">Support</a></li>
                     </ul>
                 </nav>
-                
+
                 <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -105,8 +102,7 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-     <section class="hero" id="home" data-aos="fade-up">
+    <section class="hero" id="home" data-aos="fade-up">
         <div class="hero-background"></div>
         <div class="container">
             <div class="hero-content" id="main-content">
@@ -137,7 +133,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="section about" id="about" data-aos="fade-up">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-delay="100">
@@ -156,11 +151,17 @@
                         <div class="funding-details">
                             <div class="funding-item">
                                 <i class="fas fa-percentage"></i>
-                                <div><h5>10% Family Commitment</h5><p>Consistent monthly funding from 10% of founding family earnings</p></div>
+                                <div>
+                                    <h5>10% Family Commitment</h5>
+                                    <p>Consistent monthly funding from 10% of founding family earnings</p>
+                                </div>
                             </div>
                             <div class="funding-item">
                                 <i class="fas fa-hands"></i>
-                                <div><h5>Community Contributions</h5><p>Additional support from well-wishers and strategic partners</p></div>
+                                <div>
+                                    <h5>Community Contributions</h5>
+                                    <p>Additional support from well-wishers and strategic partners</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -184,7 +185,6 @@
         </div>
     </section>
 
-    <!-- Strategy Section -->
     <section class="section strategy" id="strategy" data-aos="fade-up">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-delay="100">
@@ -210,17 +210,28 @@
                 <div class="objectives" data-aos="fade-up" data-aos-delay="800">
                     <h3><i class="fas fa-tasks"></i> Key Objectives</h3>
                     <div class="objectives-grid">
-                        <div class="objective" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-graduation-cap"></i><h4>Education</h4><p>Provide bursaries and educational support</p></div>
-                        <div class="objective" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-briefcase"></i><h4>Economic Independence</h4><p>Strengthen economic independence through training and grants</p></div>
-                        <div class="objective" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-home"></i><h4>Household Support</h4><p>Support vulnerable households</p></div>
-                        <div class="objective" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-users"></i><h4>Youth Development</h4><p>Promote youth talent and leadership</p></div>
+                        <div class="objective" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-graduation-cap"></i>
+                            <h4>Education</h4>
+                            <p>Provide bursaries and educational support</p>
+                        </div>
+                        <div class="objective" data-aos="fade-up" data-aos-delay="200"><i class="fas fa-briefcase"></i>
+                            <h4>Economic Independence</h4>
+                            <p>Strengthen economic independence through training and grants</p>
+                        </div>
+                        <div class="objective" data-aos="fade-up" data-aos-delay="300"><i class="fas fa-home"></i>
+                            <h4>Household Support</h4>
+                            <p>Support vulnerable households</p>
+                        </div>
+                        <div class="objective" data-aos="fade-up" data-aos-delay="400"><i class="fas fa-users"></i>
+                            <h4>Youth Development</h4>
+                            <p>Promote youth talent and leadership</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Programs Section -->
     <section class="section programs" id="programs" data-aos="fade-up">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-delay="100">
@@ -247,7 +258,9 @@
                             </ul>
                         </div>
                         <div class="program-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 75%"></div></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 75%"></div>
+                            </div>
                             <div class="progress-text"><span>2025 Target: 75% Complete</span></div>
                         </div>
                     </div>
@@ -270,7 +283,9 @@
                             </ul>
                         </div>
                         <div class="program-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 60%"></div></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 60%"></div>
+                            </div>
                             <div class="progress-text"><span>2025 Target: 60% Complete</span></div>
                         </div>
                     </div>
@@ -293,7 +308,9 @@
                             </ul>
                         </div>
                         <div class="program-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 85%"></div></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
                             <div class="progress-text"><span>2025 Target: 85% Complete</span></div>
                         </div>
                     </div>
@@ -316,7 +333,9 @@
                             </ul>
                         </div>
                         <div class="program-progress">
-                            <div class="progress-bar"><div class="progress-fill" style="width: 70%"></div></div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 70%"></div>
+                            </div>
                             <div class="progress-text"><span>2025 Target: 70% Complete</span></div>
                         </div>
                     </div>
@@ -330,7 +349,421 @@
         </div>
     </section>
 
-    <!-- Implementation & Partnerships Section -->
+    <section class="section blog" id="blog" data-aos="fade-up">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up" data-aos-delay="100">
+                <span class="section-label">LATEST UPDATES</span>
+                <h2 class="section-title">Stories & Impact</h2>
+                <p class="section-subtitle">Discover the transformative work happening in Makueni County</p>
+            </div>
+
+            <div class="blog-filters" data-aos="fade-up" data-aos-delay="150">
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-th"></i> All Stories
+                </button>
+                <button class="filter-btn" data-filter="education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </button>
+                <button class="filter-btn" data-filter="empowerment">
+                    <i class="fas fa-chart-line"></i> Empowerment
+                </button>
+                <button class="filter-btn" data-filter="sports">
+                    <i class="fas fa-futbol"></i> Sports
+                </button>
+                <button class="filter-btn" data-filter="welfare">
+                    <i class="fas fa-hand-holding-heart"></i> Welfare
+                </button>
+            </div>
+
+            <div class="blog-hero" data-aos="zoom-in" data-aos-delay="200">
+                <div class="hero-post" data-category="education">
+                    <div class="hero-post-image">
+                        <img src="https://i.imgur.com/OJvzLDf.jpeg" alt="Annual Bursary Distribution">
+                        <div class="hero-gradient"></div>
+                        <div class="hero-badge">
+                            <i class="fas fa-star"></i> Featured Story
+                        </div>
+                    </div>
+                    <div class="hero-post-content">
+                        <div class="hero-meta">
+                            <span class="hero-category education">
+                                <i class="fas fa-graduation-cap"></i> Education
+                            </span>
+                            <span class="hero-date">
+                                <i class="far fa-calendar-alt"></i> March 15, 2025
+                            </span>
+                            <span class="hero-reading-time">
+                                <i class="far fa-clock"></i> 5 min read
+                            </span>
+                        </div>
+                        <h2 class="hero-title">Annual Bursary Distribution: Transforming 150 Lives Through Education</h2>
+                        <p class="hero-excerpt">In a ceremony filled with hope and gratitude, Nzumbi Foundation distributed educational bursaries to 150 deserving students across Makueni County, ensuring that financial barriers don't stand in the way of academic excellence.</p>
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span><strong>150</strong> Students Supported</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-school"></i>
+                                <span><strong>25</strong> Schools Reached</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span><strong>KES 2.5M</strong> Distributed</span>
+                            </div>
+                        </div>
+                        <button class="hero-cta read-more-btn">
+                            <span>Read Full Story</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modern-blog-grid" data-aos="fade-up" data-aos-delay="300">
+                <article class="modern-blog-card" data-category="empowerment" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Entrepreneurship Training">
+                        <div class="card-overlay"></div>
+                        <span class="card-category empowerment">
+                            <i class="fas fa-chart-line"></i> Empowerment
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Mar 10, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 3 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Youth Entrepreneurship Workshop Creates 50 New Businesses</h3>
+                        <p class="card-excerpt">Young entrepreneurs graduate from our intensive business training program with startup grants and mentorship support to launch sustainable ventures.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="modern-blog-card" data-category="sports" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sports Tournament">
+                        <div class="card-overlay"></div>
+                        <span class="card-category sports">
+                            <i class="fas fa-futbol"></i> Sports
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Mar 5, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 4 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Community Football Tournament Unites 200 Youth in Healthy Competition</h3>
+                        <p class="card-excerpt">Team Kibwezi emerges victorious in our annual tournament that brings together communities through sport and celebrates youth talent.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="modern-blog-card" data-category="welfare" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Food Distribution">
+                        <div class="card-overlay"></div>
+                        <span class="card-category welfare">
+                            <i class="fas fa-hand-holding-heart"></i> Welfare
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Feb 28, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 3 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Emergency Relief Reaches 300 Households During Drought Crisis</h3>
+                        <p class="card-excerpt">Our rapid response program delivers essential food packages to vulnerable families facing the challenges of prolonged drought conditions.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="modern-blog-card" data-category="welfare" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Medical Camp">
+                        <div class="card-overlay"></div>
+                        <span class="card-category welfare">
+                            <i class="fas fa-hand-holding-heart"></i> Health
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Feb 15, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 4 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Free Medical Camp Serves 500+ Community Members in Kathonzweni</h3>
+                        <p class="card-excerpt">Healthcare reaches rural communities as our weekend medical camp provides comprehensive checkups and treatment to hundreds of residents.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="modern-blog-card" data-category="education" data-aos="fade-up" data-aos-delay="500">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Computer Training">
+                        <div class="card-overlay"></div>
+                        <span class="card-category education">
+                            <i class="fas fa-graduation-cap"></i> Education
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Feb 10, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 5 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Digital Skills Training Bridges Technology Gap for 80 Youth</h3>
+                        <p class="card-excerpt">Empowering the next generation with essential computer and digital literacy skills to compete in the modern workforce.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="modern-blog-card" data-category="empowerment" data-aos="fade-up" data-aos-delay="600">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Agricultural Training">
+                        <div class="card-overlay"></div>
+                        <span class="card-category empowerment">
+                            <i class="fas fa-chart-line"></i> Empowerment
+                        </span>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-meta">
+                            <span class="card-date">
+                                <i class="far fa-calendar"></i> Jan 28, 2025
+                            </span>
+                            <span class="card-time">
+                                <i class="far fa-clock"></i> 4 min
+                            </span>
+                        </div>
+                        <h3 class="card-title">Modern Farming Techniques Transform Local Agricultural Practices</h3>
+                        <p class="card-excerpt">Farmers embrace sustainable farming methods learned through our agricultural training workshops, leading to increased yields and income.</p>
+                        <div class="card-footer">
+                            <button class="card-read-more">
+                                <span>Explore</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="interactive-gallery" data-aos="fade-up" data-aos-delay="400">
+                <div class="gallery-header">
+                    <div>
+                        <h3 class="gallery-title">
+                            <i class="fas fa-camera-retro"></i> Visual Stories
+                        </h3>
+                        <p class="gallery-subtitle">Moments that capture our impact in the community</p>
+                    </div>
+                    <button class="view-all-gallery">
+                        <span>View All</span>
+                        <i class="fas fa-images"></i>
+                    </button>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-item large" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Students Learning">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h4>Education in Action</h4>
+                                <p>Students at Mbooni Primary School receiving new textbooks</p>
+                                <span class="gallery-view"><i class="fas fa-search-plus"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Community Farming">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h4>Agricultural Training</h4>
+                                <p>Farmers learning sustainable practices</p>
+                                <span class="gallery-view"><i class="fas fa-search-plus"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+                        <img src="https://images.unsplash.com/photo-1511984804822-e16ba72fcf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sports Event">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h4>Sports Championship</h4>
+                                <p>Community tournament finals</p>
+                                <span class="gallery-view"><i class="fas fa-search-plus"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Computer Training">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h4>Digital Literacy</h4>
+                                <p>Youth mastering computer skills</p>
+                                <span class="gallery-view"><i class="fas fa-search-plus"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="500">
+                        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Community Meeting">
+                        <div class="gallery-overlay">
+                            <div class="gallery-content">
+                                <h4>Community Engagement</h4>
+                                <p>Local leaders planning initiatives</p>
+                                <span class="gallery-view"><i class="fas fa-search-plus"></i> View</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="modal" id="blogModal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-container">
+            <div class="modal-content">
+                <button class="close-modal" id="closeBlogModal">&times;</button>
+                <div class="blog-modal-content">
+                    <div class="blog-modal-header">
+                        <div class="post-category-badge">Education</div>
+                        <h2>Annual Bursary Distribution Ceremony 2025</h2>
+                        <div class="blog-post-meta">
+                            <div class="author-info">
+                                <img src="https://i.imgur.com/Vxrfv3V.png" alt="Nzumbi Foundation" class="author-avatar">
+                                <div>
+                                    <h4>Nzumbi Foundation Team</h4>
+                                    <p>Published on March 15, 2025</p>
+                                </div>
+                            </div>
+                            <div class="post-stats-modal">
+                                <span><i class="far fa-clock"></i> 5 min read</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="blog-modal-body">
+                        <div class="featured-image-modal">
+                            <img src="https://i.imgur.com/OJvzLDf.jpeg" alt="Bursary Distribution">
+                        </div>
+
+                        <div class="post-content">
+                            <p class="lead">On March 15, 2025, Nzumbi Foundation celebrated a significant milestone by distributing educational bursaries to 150 deserving students from Makueni County, marking our largest bursary program to date.</p>
+
+                            <h3>The Ceremony</h3>
+                            <p>The event took place at the Makueni County Hall, attended by students, parents, teachers, and local government officials. The atmosphere was filled with hope and gratitude as students received their awards.</p>
+
+                            <p>County Education Officer, Mrs. Jane Mwende, commended our efforts: "This initiative by Nzumbi Foundation is transforming lives and ensuring that financial constraints don't hinder academic excellence."</p>
+
+                            <h3>Impact on Students</h3>
+                            <p>The bursaries cover school fees, textbooks, uniforms, and other essential educational materials. This support ensures that:</p>
+                            <ul>
+                                <li>Students can complete their academic year without interruption</li>
+                                <li>They have access to necessary learning materials</li>
+                                <li>Reduced financial stress leads to better academic performance</li>
+                                <li>Parents can allocate resources to other household needs</li>
+                            </ul>
+
+                            <h3>Success Stories</h3>
+                            <blockquote>
+                                <p>"This bursary came at the right time. I was about to drop out of school due to lack of fees. Now I can continue with my studies and pursue my dream of becoming a doctor."</p>
+                                <cite>- Mary Mwende, Form 3 Student</cite>
+                            </blockquote>
+
+                            <blockquote>
+                                <p>"As a single mother, providing education for my three children was challenging. This support has lifted a huge burden from my shoulders."</p>
+                                <cite>- Jane Kamene, Parent</cite>
+                            </blockquote>
+
+                            <h3>Gallery from the Event</h3>
+                            <div class="post-gallery">
+                                <div class="gallery-grid">
+                                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Award ceremony">
+                                    <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Happy students">
+                                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80" alt="Group photo">
+                                </div>
+                            </div>
+
+                            <h3>Looking Forward</h3>
+                            <p>We are committed to expanding this program in the coming years. Our goal for 2026 is to support 200 students and introduce mentorship programs to complement the financial support.</p>
+
+                            <div class="call-to-action-post">
+                                <h4><i class="fas fa-heart"></i> Support Our Education Program</h4>
+                                <p>Help us reach more students by making a donation today. Every contribution makes a difference.</p>
+                                <a href="#donate" class="btn btn-primary">
+                                    <i class="fas fa-donate"></i> Donate Now
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="post-footer">
+                            <div class="tags">
+                                <strong>Tags:</strong>
+                                <span class="tag">Education</span>
+                                <span class="tag">Bursary</span>
+                                <span class="tag">Makueni</span>
+                                <span class="tag">Students</span>
+                            </div>
+
+                            <div class="share-buttons">
+                                <strong>Share this post:</strong>
+                                <a href="#" class="share-btn"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="share-btn"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" class="share-btn"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="section implementation" id="partners" data-aos="fade-up">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-delay="100">
@@ -343,29 +776,83 @@
                     <h3><i class="fas fa-handshake"></i> Strategic Partnerships</h3>
                     <p>We collaborate with various stakeholders to maximize our impact:</p>
                     <div class="partners-list">
-                        <div class="partner-item"><div class="partner-icon"><i class="fas fa-school"></i></div><div class="partner-info"><h4>Schools & Educational Institutions</h4><p>Partnering with schools in Makueni County</p></div></div>
-                        <div class="partner-item"><div class="partner-icon"><i class="fas fa-church"></i></div><div class="partner-info"><h4>Religious Organizations</h4><p>Collaborating with churches and faith groups</p></div></div>
-                        <div class="partner-item"><div class="partner-icon"><i class="fas fa-landmark"></i></div><div class="partner-info"><h4>County Government</h4><p>Working with Makueni County government offices</p></div></div>
-                        <div class="partner-item"><div class="partner-icon"><i class="fas fa-globe-africa"></i></div><div class="partner-info"><h4>NGO Partners</h4><p>Partnering with local and international NGOs</p></div></div>
-                        <div class="partner-item"><div class="partner-icon"><i class="fas fa-users"></i></div><div class="partner-info"><h4>Community Groups</h4><p>Engaging with community-based organizations</p></div></div>
+                        <div class="partner-item">
+                            <div class="partner-icon"><i class="fas fa-school"></i></div>
+                            <div class="partner-info">
+                                <h4>Schools & Educational Institutions</h4>
+                                <p>Partnering with schools in Makueni County</p>
+                            </div>
+                        </div>
+                        <div class="partner-item">
+                            <div class="partner-icon"><i class="fas fa-church"></i></div>
+                            <div class="partner-info">
+                                <h4>Religious Organizations</h4>
+                                <p>Collaborating with churches and faith groups</p>
+                            </div>
+                        </div>
+                        <div class="partner-item">
+                            <div class="partner-icon"><i class="fas fa-landmark"></i></div>
+                            <div class="partner-info">
+                                <h4>County Government</h4>
+                                <p>Working with Makueni County government offices</p>
+                            </div>
+                        </div>
+                        <div class="partner-item">
+                            <div class="partner-icon"><i class="fas fa-globe-africa"></i></div>
+                            <div class="partner-info">
+                                <h4>NGO Partners</h4>
+                                <p>Partnering with local and international NGOs</p>
+                            </div>
+                        </div>
+                        <div class="partner-item">
+                            <div class="partner-icon"><i class="fas fa-users"></i></div>
+                            <div class="partner-info">
+                                <h4>Community Groups</h4>
+                                <p>Engaging with community-based organizations</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="implementation-card" data-aos="fade-left" data-aos-delay="200">
                     <h3><i class="fas fa-chart-line"></i> Monitoring & Evaluation</h3>
                     <p>We ensure program effectiveness through rigorous assessment:</p>
                     <div class="monitoring-list">
-                        <div class="monitoring-item"><i class="fas fa-calendar-check"></i><div><h4>Quarterly Reviews</h4><p>Regular assessment of program implementation</p></div></div>
-                        <div class="monitoring-item"><i class="fas fa-chart-bar"></i><div><h4>Annual Reviews</h4><p>Comprehensive evaluation of annual performance</p></div></div>
-                        <div class="monitoring-item"><i class="fas fa-bullseye"></i><div><h4>KPIs Tracking</h4><p>Key Performance Indicators monitoring</p></div></div>
-                        <div class="monitoring-item"><i class="fas fa-comments"></i><div><h4>Community Feedback</h4><p>Regular beneficiary satisfaction surveys</p></div></div>
-                        <div class="monitoring-item"><i class="fas fa-chart-pie"></i><div><h4>Impact Assessments</h4><p>Long-term outcome measurement</p></div></div>
+                        <div class="monitoring-item"><i class="fas fa-calendar-check"></i>
+                            <div>
+                                <h4>Quarterly Reviews</h4>
+                                <p>Regular assessment of program implementation</p>
+                            </div>
+                        </div>
+                        <div class="monitoring-item"><i class="fas fa-chart-bar"></i>
+                            <div>
+                                <h4>Annual Reviews</h4>
+                                <p>Comprehensive evaluation of annual performance</p>
+                            </div>
+                        </div>
+                        <div class="monitoring-item"><i class="fas fa-bullseye"></i>
+                            <div>
+                                <h4>KPIs Tracking</h4>
+                                <p>Key Performance Indicators monitoring</p>
+                            </div>
+                        </div>
+                        <div class="monitoring-item"><i class="fas fa-comments"></i>
+                            <div>
+                                <h4>Community Feedback</h4>
+                                <p>Regular beneficiary satisfaction surveys</p>
+                            </div>
+                        </div>
+                        <div class="monitoring-item"><i class="fas fa-chart-pie"></i>
+                            <div>
+                                <h4>Impact Assessments</h4>
+                                <p>Long-term outcome measurement</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Support / Donate Section -->
     <section class="section donate" id="donate" data-aos="fade-up">
         <div class="container">
             <div class="section-header" data-aos="fade-up" data-aos-delay="100">
@@ -378,10 +865,22 @@
                     <h3><i class="fas fa-donate"></i> Financial Support</h3>
                     <p>Your donation directly supports our active programs and community initiatives.</p>
                     <div class="donation-levels">
-                        <div class="level"><h4>KES 5,000</h4><p>Supports one student's school fees for a term</p></div>
-                        <div class="level"><h4>KES 10,000</h4><p>Funds a business startup grant</p></div>
-                        <div class="level"><h4>KES 25,000</h4><p>Sponsors a youth sports tournament</p></div>
-                        <div class="level"><h4>Any Amount</h4><p>Every contribution makes a difference</p></div>
+                        <div class="level">
+                            <h4>KES 5,000</h4>
+                            <p>Supports one student's school fees for a term</p>
+                        </div>
+                        <div class="level">
+                            <h4>KES 10,000</h4>
+                            <p>Funds a business startup grant</p>
+                        </div>
+                        <div class="level">
+                            <h4>KES 25,000</h4>
+                            <p>Sponsors a youth sports tournament</p>
+                        </div>
+                        <div class="level">
+                            <h4>Any Amount</h4>
+                            <p>Every contribution makes a difference</p>
+                        </div>
                     </div>
                     <button class="btn btn-primary donation-support-btn" id="donationSupportBtn"><i class="fas fa-heart"></i> Make a Donation</button>
                 </div>
@@ -389,15 +888,26 @@
                     <h3><i class="fas fa-handshake"></i> Partnership Opportunities</h3>
                     <p>We welcome partnerships with organizations and individuals who share our vision.</p>
                     <div class="partnership-types">
-                        <div class="partnership-type"><i class="fas fa-school"></i><h4>Institutional Partners</h4><p>Schools, colleges, and training institutions</p></div>
-                        <div class="partnership-type"><i class="fas fa-building"></i><h4>Corporate Partners</h4><p>Businesses interested in CSR initiatives</p></div>
-                        <div class="partnership-type"><i class="fas fa-users"></i><h4>Community Partners</h4><p>Local CBOs and community groups</p></div>
-                        <div class="partnership-type"><i class="fas fa-globe"></i><h4>International Partners</h4><p>International NGOs and donors</p></div>
+                        <div class="partnership-type"><i class="fas fa-school"></i>
+                            <h4>Institutional Partners</h4>
+                            <p>Schools, colleges, and training institutions</p>
+                        </div>
+                        <div class="partnership-type"><i class="fas fa-building"></i>
+                            <h4>Corporate Partners</h4>
+                            <p>Businesses interested in CSR initiatives</p>
+                        </div>
+                        <div class="partnership-type"><i class="fas fa-users"></i>
+                            <h4>Community Partners</h4>
+                            <p>Local CBOs and community groups</p>
+                        </div>
+                        <div class="partnership-type"><i class="fas fa-globe"></i>
+                            <h4>International Partners</h4>
+                            <p>International NGOs and donors</p>
+                        </div>
                     </div>
                     <button class="btn btn-secondary" id="partnerBtn"><i class="fas fa-envelope"></i> Become a Partner</button>
                 </div>
             </div>
-            <!-- Contact Form -->
             <div class="contact-form-section" data-aos="fade-up" data-aos-delay="400">
                 <div class="section-header">
                     <span class="section-label">CONTACT US</span>
@@ -440,10 +950,6 @@
                             <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
                         </div>
                         <div class="form-footer">
-                            <div class="form-agreement">
-                                <input type="checkbox" id="newsletter" name="newsletter">
-                                <label for="newsletter">Subscribe to our newsletter for updates</label>
-                            </div>
                             <button type="submit" class="btn btn-primary submit-btn"><i class="fas fa-paper-plane"></i> Send Message</button>
                         </div>
                         <div class="form-status" id="formStatus"></div>
@@ -452,19 +958,31 @@
                         <h3><i class="fas fa-info-circle"></i> Other Ways to Reach Us</h3>
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="method-details"><h4>Email Us</h4><p>info@nzumbifoundation.org</p><small>We respond within 24 hours</small></div>
+                            <div class="method-details">
+                                <h4>Email Us</h4>
+                                <p>info@nzumbifoundation.org</p><small>We respond within 24 hours</small>
+                            </div>
                         </div>
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-phone"></i></div>
-                            <div class="method-details"><h4>Call Us</h4><p>+254 726 059 231</p><small>Monday - Friday, 8AM - 5PM</small></div>
+                            <div class="method-details">
+                                <h4>Call Us</h4>
+                                <p>+254 726 059 231</p><small>Monday - Friday, 8AM - 5PM</small>
+                            </div>
                         </div>
                         <div class="contact-method">
                             <div class="method-icon"><i class="fab fa-whatsapp"></i></div>
-                            <div class="method-details"><h4>WhatsApp</h4><p>+254 726 059 231</p><small>Chat with us directly</small></div>
+                            <div class="method-details">
+                                <h4>WhatsApp</h4>
+                                <p>+254 726 059 231</p><small>Chat with us directly</small>
+                            </div>
                         </div>
                         <div class="contact-method">
                             <div class="method-icon"><i class="fas fa-map-marker-alt"></i></div>
-                            <div class="method-details"><h4>Visit Us</h4><p>Makueni County, Kenya</p><small>By appointment only</small></div>
+                            <div class="method-details">
+                                <h4>Visit Us</h4>
+                                <p>Makueni County, Kenya</p><small>By appointment only</small>
+                            </div>
                         </div>
                         <div class="emergency-contact">
                             <h4><i class="fas fa-exclamation-circle"></i> For Urgent Matters</h4>
@@ -476,7 +994,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer id="contact" data-aos="fade-up">
         <div class="container">
             <div class="footer-content">
@@ -497,16 +1014,37 @@
                         <li><a href="#strategy"><i class="fas fa-eye"></i> Strategy</a></li>
                         <li><a href="#programs"><i class="fas fa-project-diagram"></i> Programs</a></li>
                         <li><a href="#partners"><i class="fas fa-handshake"></i> Partners</a></li>
+                        <li><a href="#blog"><i class="fas fa-newspaper"></i> Blog & News</a></li>
                         <li><a href="#donate"><i class="fas fa-heart"></i> Support</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h3><i class="fas fa-map-marker-alt"></i> Location & Contact</h3>
                     <ul class="contact-info">
-                        <li><i class="fas fa-map-pin"></i><div><h4>Headquarters</h4><p>Makueni County, Kenya</p></div></li>
-                        <li><i class="fas fa-phone"></i><div><h4>Phone</h4><p>+254 726 059 231</p></div></li>
-                        <li><i class="fas fa-envelope"></i><div><h4>Email</h4><p>info@nzumbifoundation.org</p></div></li>
-                        <li><i class="fas fa-file-contract"></i><div><h4>Registration</h4><p>OP.218/051/12-099/11325</p></div></li>
+                        <li><i class="fas fa-map-pin"></i>
+                            <div>
+                                <h4>Headquarters</h4>
+                                <p>Makueni County, Kenya</p>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+254 726 059 231</p>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@nzumbifoundation.org</p>
+                            </div>
+                        </li>
+                        <li><i class="fas fa-file-contract"></i>
+                            <div>
+                                <h4>Registration</h4>
+                                <p>OP.218/051/12-099/11325</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -538,7 +1076,6 @@
         </div>
     </footer>
 
-    <!-- Support Modal -->
     <div class="modal" id="supportModal">
         <div class="modal-backdrop"></div>
         <div class="modal-container">
@@ -550,6 +1087,12 @@
                     <div class="support-methods">
                         <div class="method">
                             <h4><i class="fas fa-mobile-alt"></i> M-PESA</h4>
+                            <p>Send money to:</p>
+                            <div class="mpesa-number">
+                                <i class="fas fa-phone"></i>
+                                <span class="phone-number">0726 059 231</span>
+                            </div>
+                            <p class="mpesa-instruction">Go to M-PESA → Send Money → Enter 0726059231</p>
                         </div>
                         <div class="method">
                             <h4><i class="fas fa-university"></i> Bank Transfer</h4>
@@ -577,7 +1120,6 @@
         </div>
     </div>
 
-    <!-- Partnership Modal -->
     <div class="modal" id="partnershipModal">
         <div class="modal-backdrop"></div>
         <div class="modal-container">
@@ -622,10 +1164,8 @@
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="js/main.js"></script>
     <script src="js/accessibility.js"></script>
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({
@@ -634,22 +1174,12 @@
             once: true,
             offset: 100
         });
-    </script>
-    <script>
+
         const loadingScreen = document.getElementById('loadingScreen');
         window.addEventListener('load', () => {
             setTimeout(() => {
                 loadingScreen.classList.add('fade-out');
             }, 800);
-        });
-        document.querySelectorAll('a[href]:not([href^="http"]):not([href^="mailto"]):not([href^="#"]):not([target])').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                loadingScreen.classList.remove('fade-out');
-                setTimeout(() => {
-                    window.location = link.href;
-                }, 300);
-            });
         });
     </script>
 </body>
