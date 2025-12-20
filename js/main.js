@@ -107,8 +107,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     /* ============================================
-       5. MODALS
+       5. MODALS - CLOSE ON OUTSIDE CLICK
        ============================================ */
+    
+    // Function to close all modals
+    function closeAllModals() {
+        const modals = document.querySelectorAll('.modal.active');
+        modals.forEach(modal => {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+    }
     
     // Support/Donation Modal
     const supportModal = document.getElementById('supportModal');
@@ -124,17 +133,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (closeModal) {
-        closeModal.addEventListener('click', function() {
-            supportModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        closeModal.addEventListener('click', closeAllModals);
     }
     
     if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', function() {
-            supportModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        closeModalBtn.addEventListener('click', closeAllModals);
     }
     
     // Partnership Modal
@@ -152,17 +155,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     if (closePartnerModal) {
-        closePartnerModal.addEventListener('click', function() {
-            partnershipModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        closePartnerModal.addEventListener('click', closeAllModals);
     }
     
     if (cancelPartnerBtn) {
-        cancelPartnerBtn.addEventListener('click', function() {
-            partnershipModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        });
+        cancelPartnerBtn.addEventListener('click', closeAllModals);
     }
     
     // Submit Partnership Form
@@ -180,8 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // You can add AJAX submission here
             alert('Thank you for your partnership inquiry! We will contact you soon.');
-            partnershipModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            closeAllModals();
             
             // Reset form
             document.getElementById('partnerName').value = '';
@@ -191,33 +187,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Close modal when clicking on backdrop
-    document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
-        backdrop.addEventListener('click', function() {
-            this.parentElement.classList.remove('active');
-            document.body.style.overflow = 'auto';
+    // Close modal when clicking on backdrop (outside modal content)
+    document.querySelectorAll('.modal-backdrop, .modal').forEach(modalElement => {
+        modalElement.addEventListener('click', function(e) {
+            // Check if click is on backdrop or directly on modal container (outside content)
+            if (e.target.classList.contains('modal-backdrop') || 
+                (e.target.classList.contains('modal') && !e.target.querySelector('.modal-container'))) {
+                closeAllModals();
+            }
         });
     });
     
-    // Copy button functionality
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const text = this.getAttribute('data-text');
-            
-            // Create temporary textarea
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-            
-            // Change button text temporarily
-            const originalHTML = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-check"></i> Copied!';
-            setTimeout(() => {
-                this.innerHTML = originalHTML;
-            }, 2000);
+    // Close modal when clicking outside modal content but inside modal
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAllModals();
+            }
         });
     });
     
@@ -278,25 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /* ============================================
-       7. REQUEST BANK DETAILS BUTTON
-       ============================================ */
-    const requestBankBtn = document.getElementById('requestBankBtn');
-    const inKindBtn = document.getElementById('inKindBtn');
-    
-    if (requestBankBtn) {
-        requestBankBtn.addEventListener('click', function() {
-            window.location.href = 'mailto:info@nzumbifoundation.or.ke?subject=Bank Account Details Request&body=Hello, I would like to receive your bank account details for making a donation.';
-        });
-    }
-    
-    if (inKindBtn) {
-        inKindBtn.addEventListener('click', function() {
-            window.location.href = 'mailto:info@nzumbifoundation.or.ke?subject=In-Kind Support Inquiry&body=Hello, I am interested in providing in-kind support to Nzumbi Foundation.';
-        });
-    }
-    
-    /* ============================================
-       8. FORM VALIDATION
+       7. FORM VALIDATION
        ============================================ */
     const forms = document.querySelectorAll('form');
     
@@ -335,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     /* ============================================
-       9. PROGRESS BAR ANIMATION
+       8. PROGRESS BAR ANIMATION
        ============================================ */
     const progressBars = document.querySelectorAll('.progress-fill');
     
@@ -359,72 +327,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     /* ============================================
-       10. LAZY LOADING IMAGES
-       ============================================ */
-    const images = document.querySelectorAll('img');
-    
-    const imageObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.src; // Trigger load
-                imageObserver.unobserve(img);
-            }
-        });
-    });
-    
-    images.forEach(img => {
-        imageObserver.observe(img);
-    });
-    
-    /* ============================================
-       11. BACK TO TOP BUTTON (Optional)
-       ============================================ */
-    // You can add this if you want a back-to-top button
-    /*
-    const backToTop = document.createElement('button');
-    backToTop.innerHTML = '<i class="fas fa-arrow-up"></i>';
-    backToTop.className = 'back-to-top';
-    backToTop.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        left: 30px;
-        width: 50px;
-        height: 50px;
-        background: #8806CE;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        cursor: pointer;
-        display: none;
-        z-index: 998;
-    `;
-    document.body.appendChild(backToTop);
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 500) {
-            backToTop.style.display = 'block';
-        } else {
-            backToTop.style.display = 'none';
-        }
-    });
-    
-    backToTop.addEventListener('click', function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    */
-    
-    /* ============================================
-       12. CONSOLE MESSAGE
+       9. CONSOLE MESSAGE
        ============================================ */
     console.log('%cNzumbi Foundation', 'color: #8806CE; font-size: 24px; font-weight: bold;');
     console.log('%cTransforming Communities in Kenya', 'color: #6C757D; font-size: 14px;');
     console.log('%cWebsite developed with ❤️', 'color: #FF6B35; font-size: 12px;');
     
+    /* ============================================
+       10. CLOSE MODALS ON ESCAPE KEY
+       ============================================ */
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeAllModals();
+        }
+    });
+    
 });
 
 /* ============================================
-   13. PERFORMANCE OPTIMIZATION
+   11. PERFORMANCE OPTIMIZATION
    ============================================ */
 // Debounce function for scroll events
 function debounce(func, wait) {
@@ -452,6 +373,7 @@ function throttle(func, limit) {
         }
     };
 }
+
 // Function to scroll to contact form and pre-fill subject
 function scrollToContactForm(subject) {
     // Close any open modals
@@ -614,38 +536,406 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.removeItem('contactSubject'); // Clear after use
         }
     }
+});
+
+// ============================================
+// MODERN BLOG & NEWS FUNCTIONALITY
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
     
-    // Copy button functionality for M-PESA
-    const copyBtns = document.querySelectorAll('.copy-btn');
-    copyBtns.forEach(btn => {
+    // ============================================
+    // FILTER FUNCTIONALITY
+    // ============================================ */
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const blogCards = document.querySelectorAll('.modern-blog-card');
+    const heroPost = document.querySelector('.hero-post');
+    
+    filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            const textToCopy = this.getAttribute('data-text');
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                // Show feedback
-                const originalText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                this.classList.add('copied');
+            // Remove active class from all buttons
+            filterBtns.forEach(b => b.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Get filter value
+            const filterValue = this.getAttribute('data-filter');
+            
+            // Filter blog cards with smooth animation
+            blogCards.forEach((card, index) => {
+                const cardCategory = card.getAttribute('data-category');
                 
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy: ', err);
-                alert('Failed to copy details. Please select and copy manually.');
+                if (filterValue === 'all' || cardCategory === filterValue) {
+                    // Show card with delay for staggered effect
+                    setTimeout(() => {
+                        card.classList.remove('hidden');
+                        card.style.animation = 'fadeInUp 0.5s ease forwards';
+                    }, index * 50);
+                } else {
+                    // Hide card
+                    card.style.animation = 'fadeOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 300);
+                }
             });
-        });
-    });
-    
-    // Close modal when clicking on backdrop
-    const modalBackdrops = document.querySelectorAll('.modal-backdrop');
-    modalBackdrops.forEach(backdrop => {
-        backdrop.addEventListener('click', function() {
-            const modal = this.closest('.modal');
-            if (modal) {
-                modal.classList.remove('active');
-                modal.style.display = 'none';
+            
+            // Filter hero post
+            if (heroPost) {
+                const heroCategory = heroPost.getAttribute('data-category');
+                if (filterValue === 'all' || heroCategory === filterValue) {
+                    heroPost.style.display = 'grid';
+                    heroPost.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    heroPost.style.animation = 'fadeOut 0.3s ease forwards';
+                    setTimeout(() => {
+                        heroPost.style.display = 'none';
+                    }, 300);
+                }
             }
         });
     });
+    
+    // ============================================
+    // BLOG MODAL FUNCTIONALITY - WITH OUTSIDE CLICK CLOSE
+    // ============================================
+    const blogModal = document.getElementById('blogModal');
+    const readMoreButtons = document.querySelectorAll('.read-more-btn, .card-read-more');
+    const closeBlogModal = document.getElementById('closeBlogModal');
+    
+    // Function to close blog modal
+    function closeBlogModalFunc() {
+        if (blogModal) {
+            blogModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Open modal
+    readMoreButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (blogModal) {
+                blogModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                
+                // Smooth scroll to top of modal
+                setTimeout(() => {
+                    const modalContent = blogModal.querySelector('.blog-modal-content');
+                    if (modalContent) {
+                        modalContent.scrollTop = 0;
+                    }
+                }, 100);
+            }
+        });
+    });
+    
+    // Close modal with close button
+    if (closeBlogModal) {
+        closeBlogModal.addEventListener('click', closeBlogModalFunc);
+    }
+    
+    // Close modal on backdrop click
+    if (blogModal) {
+        const backdrop = blogModal.querySelector('.modal-backdrop');
+        if (backdrop) {
+            backdrop.addEventListener('click', closeBlogModalFunc);
+        }
+        
+        // Also close when clicking directly on modal container (outside content)
+        blogModal.addEventListener('click', function(e) {
+            if (e.target === this || e.target.classList.contains('modal-container')) {
+                closeBlogModalFunc();
+            }
+        });
+    }
+    
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && blogModal && blogModal.classList.contains('active')) {
+            closeBlogModalFunc();
+        }
+    });
+    
+    // ============================================
+    // GALLERY LIGHTBOX - WITH OUTSIDE CLICK CLOSE
+    // ============================================
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const img = this.querySelector('img');
+            const caption = this.querySelector('.gallery-content');
+            
+            if (img) {
+                createLightbox(
+                    img.src,
+                    img.alt,
+                    caption ? caption.innerHTML : img.alt
+                );
+            }
+        });
+    });
+    
+    // Lightbox creation function
+    function createLightbox(imageSrc, imageAlt, caption) {
+        // Remove existing lightbox if any
+        const existingLightbox = document.querySelector('.lightbox');
+        if (existingLightbox) {
+            existingLightbox.remove();
+        }
+        
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.style.animation = 'fadeIn 0.3s ease';
+        
+        lightbox.innerHTML = `
+            <div class="lightbox-content" style="animation: scaleIn 0.3s ease">
+                <button class="close-lightbox" aria-label="Close lightbox">
+                    <i class="fas fa-times"></i>
+                </button>
+                <img src="${imageSrc}" alt="${imageAlt}">
+                <div class="lightbox-caption">${caption}</div>
+            </div>
+        `;
+        
+        document.body.appendChild(lightbox);
+        document.body.style.overflow = 'hidden';
+        
+        // Function to close lightbox
+        function closeLightboxFunc() {
+            lightbox.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => {
+                lightbox.remove();
+                document.body.style.overflow = '';
+            }, 300);
+        }
+        
+        // Close lightbox with button
+        const closeLightbox = lightbox.querySelector('.close-lightbox');
+        closeLightbox.addEventListener('click', closeLightboxFunc);
+        
+        // Close on backdrop click
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                closeLightboxFunc();
+            }
+        });
+        
+        // Close on Escape key
+        const escapeHandler = function(e) {
+            if (e.key === 'Escape') {
+                closeLightboxFunc();
+                document.removeEventListener('keydown', escapeHandler);
+            }
+        };
+        document.addEventListener('keydown', escapeHandler);
+    }
+    
+    // ============================================
+    // CARD HOVER EFFECTS
+    // ============================================
+    const cards = document.querySelectorAll('.modern-blog-card');
+    
+    cards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            // Add subtle parallax effect to image
+            const img = this.querySelector('.card-image-wrapper img');
+            if (img) {
+                img.style.transform = 'scale(1.15) translateY(-5px)';
+            }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            const img = this.querySelector('.card-image-wrapper img');
+            if (img) {
+                img.style.transform = 'scale(1)';
+            }
+        });
+    });
+    
+    // ============================================
+    // VIEW ALL GALLERY BUTTON
+    // ============================================
+    const viewAllBtn = document.querySelector('.view-all-gallery');
+    if (viewAllBtn) {
+        viewAllBtn.addEventListener('click', function() {
+            // Could open a modal with all gallery images
+            // For now, just scroll to gallery
+            const gallery = document.querySelector('.interactive-gallery');
+            if (gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    }
+    
+    // ============================================
+    // LAZY LOADING FOR IMAGES
+    // ============================================
+    const images = document.querySelectorAll('.modern-blog-card img, .gallery-item img');
+    
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.style.opacity = '0';
+                img.style.transition = 'opacity 0.5s ease';
+                
+                // Once image loads, fade it in
+                if (img.complete) {
+                    img.style.opacity = '1';
+                } else {
+                    img.addEventListener('load', () => {
+                        img.style.opacity = '1';
+                    });
+                }
+                
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px'
+    });
+    
+    images.forEach(img => imageObserver.observe(img));
+    
+    // ============================================
+    // ANIMATIONS
+    // ============================================
+    // Add animation keyframes to document
+    const animationStyles = document.createElement('style');
+    animationStyles.textContent = `
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeOut {
+            from {
+                opacity: 1;
+            }
+            to {
+                opacity: 0;
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        /* Lightbox Styles */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            padding: 40px;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .close-lightbox:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            margin-top: 20px;
+            max-width: 600px;
+        }
+        
+        .lightbox-caption h4 {
+            color: white;
+            margin: 0 0 8px 0;
+            font-size: 20px;
+        }
+        
+        .lightbox-caption p {
+            color: rgba(255, 255, 255, 0.9);
+            margin: 0;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .lightbox {
+                padding: 20px;
+            }
+            
+            .lightbox-content img {
+                max-height: 60vh;
+            }
+        }
+    `;
+    document.head.appendChild(animationStyles);
+    
+    console.log('Modern Blog & News functionality initialized');
 });
